@@ -42,13 +42,13 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
     __classes = {
-        "BaseModel",
-        "User",
-        "State",
-        "City",
-        "Place",
-        "Amenity",
-        "Review"
+        "BaseModel": None,
+        "User": None,
+        "State": None,
+        "City": None,
+        "Place": None,
+        "Amenity": None,
+        "Review": None
     }
 
     def emptyline(self):
@@ -120,7 +120,7 @@ class HBNBCommand(cmd.Cmd):
                         obj_kwargs[key_name] = str_v[1:-1].replace('_', ' ')
         else:
             class_name = args
-        if not class_name:
+        if class_name not in HBNBCommand.__classes:
             print("** class name missing **")
             return
         elif class_name not in HBNBCommand.__classes:
@@ -137,7 +137,7 @@ class HBNBCommand(cmd.Cmd):
             new_instance.save()
             print(new_instance.id)
         else:
-            new_instance = HBNBCommand.__classes[class_name]
+            new_instance = HBNBCommand.__classes[class_name]()
             for key, value in obj_kwargs.items():
                 if key not in ignored_attrs:
                     setattr(new_instance, key, value)
