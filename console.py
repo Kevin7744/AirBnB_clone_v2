@@ -123,7 +123,7 @@ class HBNBCommand(cmd.Cmd):
         if not class_name:
             print("** class name missing **")
             return
-        elif class_name not in HBNBCommand.classes:
+        elif class_name not in HBNBCommand.__classes:
             print("** class doesn't exist **")
             return
         if os.getenv('HBNB_TYPE_STORAGE') == 'db':
@@ -133,11 +133,11 @@ class HBNBCommand(cmd.Cmd):
                 obj_kwargs['created_at'] = str(datetime.now())
             if not hasattr(obj_kwargs, 'updated_at'):
                 obj_kwargs['updated_at'] = str(datetime.now())
-            new_instance = HBNBCommand.classes[class_name](**obj_kwargs)
+            new_instance = HBNBCommand.__classes[class_name](**obj_kwargs)
             new_instance.save()
             print(new_instance.id)
         else:
-            new_instance = HBNBCommand.classes[class_name]()
+            new_instance = HBNBCommand.__classes[class_name]()
             for key, value in obj_kwargs.items():
                 if key not in ignored_attrs:
                     setattr(new_instance, key, value)
