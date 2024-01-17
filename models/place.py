@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """Contains the Place model"""
 from models.base_model import BaseModel
-
+import os
+from sqlalchemy import Column, Float, ForeignKey, Integer, String, Table
+from sqlalchemy.orm import relationship
 
 class Place(BaseModel):
     """

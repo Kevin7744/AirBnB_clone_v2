@@ -5,7 +5,8 @@ A module that implements the BaseModel class
 
 from uuid import uuid4
 from datetime import datetime
-
+from sqlalchemy import Column, String, DATETIME
+from sqlalchemy.ext.declarative import declarative_base
 
 class BaseModel:
     """
