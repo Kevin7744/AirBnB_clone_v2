@@ -137,7 +137,7 @@ class HBNBCommand(cmd.Cmd):
             new_instance.save()
             print(new_instance.id)
         else:
-            new_instance = HBNBCommand.__classes[class_name]()
+            new_instance = HBNBCommand.__classes[class_name]
             for key, value in obj_kwargs.items():
                 if key not in ignored_attrs:
                     setattr(new_instance, key, value)
